@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MudServerBlazor.Models;
 
-namespace MudServerBlazor.Models;
+namespace MudServerBlazor.Persistance;
 
 public partial class ChinookContext : DbContext
 {
     public ChinookContext() { }
-
-    public ChinookContext(DbContextOptions<ChinookContext> options)
-        : base(options) { }
+    public ChinookContext(DbContextOptions<ChinookContext> options) : base(options) { }
 
     public virtual DbSet<Album> Albums { get; set; }
 
@@ -30,9 +29,7 @@ public partial class ChinookContext : DbContext
     public virtual DbSet<Track> Tracks { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.LogTo(Console.WriteLine)
-                         .UseSqlServer(@"Data Source=.;Initial Catalog=Chinook;
-                                integrated security=True;Encrypt=false;TrustServerCertificate=true");
+        => optionsBuilder.LogTo(Console.WriteLine);
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

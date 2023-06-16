@@ -1,4 +1,10 @@
+using Microsoft.EntityFrameworkCore;
 using MudBlazor.Services;
+using MudServerBlazor.Models;
+using MudServerBlazor.Persistance;
+using MudServerBlazor.Persistance.Abstract;
+using MudServerBlazor.Services;
+using MudServerBlazor.Services.Abstract;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +12,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddMudServices();
+
+builder.Services.AddScoped<ICrudRepository<Customer>,CrudRepository<Customer>>();
+builder.Services.AddScoped<ICrudService<Customer>,CrudService<Customer>>();
+
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+builder.Services.AddDbContext<ChinookContext>(options => options.UseSqlServer(connectionString));
+
 
 var app = builder.Build();
 
