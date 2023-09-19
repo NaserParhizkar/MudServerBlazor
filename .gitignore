@@ -7,3 +7,7 @@
 /MudServerBlazor/obj
 /MudServerBlazor/MudServerBlazor.csproj.user
 /MudServerBlazor/bin/Debug/net8.0
+/EntityFrameworkFluentApi/bin/Debug/net7.0
+/EntityFrameworkFluentApi/obj
+/EntityFrameworkFluentApiTest/bin/Debug/net7.0
+/EntityFrameworkFluentApiTest/obj
